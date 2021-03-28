@@ -1,0 +1,30 @@
+﻿@model Vijesti.Models.Vijest
+@{
+    ViewBag.Title = "Uredi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Nova Vijest</h2>
+    @using (Html.BeginForm("Edit", "Admin"))
+    {
+
+        <div class="form-group ">
+             @Html.LabelFor(m => m.Naziv)
+             @Html.TextBoxFor(m => m.Naziv, new { @class = "form-control " })
+             @Html.ValidationMessageFor(m => m.Naziv)
+        </div>
+        <div class="form-group  ">
+            @Html.LabelFor(m => m.Naslov)
+            @Html.TextBoxFor(m => m.Naslov, new { @class = "form-control " })
+            @Html.ValidationMessageFor(m => m.Naslov)
+        </div>
+        <div class="form-group  ">
+            @Html.LabelFor(m => m.Sadrzaj)
+            @Html.TextAreaFor(m => m.Sadrzaj, new { @class = "form-control " })
+            @Html.ValidationMessageFor(m => m.Sadrzaj)
+        </div>
+        @Html.HiddenFor(m => m.Id)
+        <button type="submit" class="btn btn-primary">Spremi</button>
+
+    }
+

@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h1>VIJESTI</h1>
+<input id="PRETRAGA" class="form-control" placeholder="Pretrega" />
+<hr />
+<div class="row">
+    @foreach (var vijest in Model)
+    {
+        <a href="/Vijest/Vijest/@vijest.Id">
+            <div class="col-md-6 col-sm-12 vijest">
+                <h1>@vijest.Naziv</h1>
+                <p>@vijest.Naslov</p>
+            </div>
+        </a>
+    }
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            els = document.getElementsByClassName("vijest");
+            $("#PRETRAGA").keyup(function () {
+                var a = document.getElementById('PRETRAGA').value;
+                for (var i = 0; i < els.length; i++)
+                {
+                    console.log(els[i].innerText.toLowerCase());
+                    if (!els[i].innerText.toLowerCase().includes(a)) {
+                        els[i].style.display = "none";
+                    }
+                    else {
+                        els[i].style.display = "block";
+                    }
+                }         
+            });
+        });
+    </script>
+}

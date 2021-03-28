@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+    <div class="row">
+        <div class="col-xs-3"><h2>Aktivne vijesti</h2></div>
+        <div class="col-xs-7" style=" padding-top:20px;">
+            <input id="PRETRAGA" class="form-control" placeholder="Pretrega" />
+        </div>
+            <div class="col-xs-2" style="padding-top: 20px;"><input class="btn btn-primary" type="button" value="Kreiraj Novu" onclick="window.location='@Url.Action("Nova", "Admin")'" /></div>
+        </div>
+<div class="row">
+    
+</div>
+<div class="row">
+    <div class="col-xs-2"><h4>NAZIV</h4></div>
+    <div class="col-xs-6"><h4>NASLOV</h4></div>
+    <div class="col-xs-2"><h4>UREDI</h4></div>
+    <div class="col-xs-2"><h4>IZBRIŠI</h4></div>
+</div>
+<div class="row">
+    <hr />
+    @foreach (var vijest in @Model)
+    {
+        <div class="row vijest">
+            <div class="col-xs-2"><p>@vijest.Naziv</p></div>
+            <div class="col-xs-6"><p>@vijest.Naslov</p></div>
+            <div class="col-xs-2"><a href="/Admin/EditForm/@vijest.Id">Uredi</a></div>
+            <div class="col-xs-2"><a href="/Admin/Delete/@vijest.Id">Izbriši</a></div>
+        </div>
+    }
+
+</div>
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            els = document.getElementsByClassName("vijest");
+            $("#PRETRAGA").keyup(function () {
+                var a = document.getElementById('PRETRAGA').value;
+                for (var i = 0; i < els.length; i++) {
+                    console.log(els[i].innerText.toLowerCase());
+                    if (!els[i].innerText.toLowerCase().includes(a)) {
+                        els[i].style.display = "none";
+                    }
+                    else {
+                        els[i].style.display = "block";
+                    }
+                }
+            });
+        });
+    </script>
+}

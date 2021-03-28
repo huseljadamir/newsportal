@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNet.Identity
+
+
+    <div class="row">
+        <div class="col-xs-10"><h6>@Model.Naziv</h6></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10"><h1>@Model.Naslov</h1></div>
+        @if (Request.IsAuthenticated)
+        {
+            <a href="/Admin/EditForm/@Model.Id">
+                <input class="btn btn-primary" type="button" value="Uredi" />
+            </a>
+        }
+    </div>
+    
+    
+    <p>@Model.Sadrzaj</p>
